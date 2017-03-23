@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h1 Hackathon Starter
+    p.lead A boilerplate for Node.js web applications.
+    hr
+    .row
+        // Site content
+        .col-md-9
+            input#username
+            button#join-chat Join
+        // List contact
+        .col-md-3
+            a#addClass(href='#')
+                span.glyphicon.glyphicon-comment
+                |  Open in chat

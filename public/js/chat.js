@@ -1,7 +1,7 @@
-$(function () {
-    var host = 'http://localhost:8080/';
-    var socket = io.connect(host);
+var host = 'http://localhost:8080/';
+var socket = io.connect(host);
 
+$(function () {
     socket.on('client-info', function (data) {
         console.log(data);
         // Update socket to client
@@ -30,7 +30,7 @@ $(function () {
     socket.on('message', function (data) {
         console.log(data);
         if (data.message) {
-            var box = document.getElementById(data.sender);
+            var box = document.getElementById(data.conversation);
             if (box === null) {
                 var chatbox = openChatBox(data, 15);
 
@@ -59,11 +59,11 @@ function openChatBox(data, distance) {
     var r = (numBox > 0) ? (numBox * 300 + (numBox + 1) * distance) : distance;
 
     var html = '<div class="popup-box chat-popup popup-box-on chatbox-identifier" ' +
-        'id="' + data.conversationId + '" style="right: ' + r + 'px">' +
+        'id="' + data.conversation + '" style="right: ' + r + 'px">' +
         '<div class="popup-head">' +
         '<div class="popup-head-left pull-left">' +
         '<img src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" alt="iamgurdeeposahan"> ' +
-        data.userName +
+        data.recipient +
         '</div>' +
         '<div class="popup-head-right pull-right">' +
         '<div class="btn-group">' +
@@ -77,12 +77,12 @@ function openChatBox(data, distance) {
         '<li><a href="#">Email Chat</a></li>' +
         '</ul>' +
         '</div>' +
-        '<button class="chat-header-button pull-right" id="closeChatBox" box-close="' + data.conversationId + '" type="button" onclick="closeChatBox(this)">' +
+        '<button class="chat-header-button pull-right" id="closeChatBox" box-close="' + data.conversation + '" type="button" onclick="closeChatBox(this)">' +
         '<i class="fa fa-power-off"></i>' +
         '</button>' +
         '</div>' +
         '</div>' +
-        '<div class="popup-messages" id="c-content-' + data.conversationId + '">' +
+        '<div class="popup-messages" id="c-content-' + data.conversation + '">' +
         '<div class="direct-chat-messages">' +
         '<div class="chat-box-single-line">' +
         '<abbr class="timestamp">October 8th, 2015</abbr>' +
@@ -105,7 +105,7 @@ function openChatBox(data, distance) {
         '</div>' +
         '<div class="popup-messages-footer">' +
         '<textarea onkeypress="sendMessage(this, event)" class="status_message" placeholder="Type a message..." ' +
-        'rows="10" cols="40" name="message" conversation="'+data.conversationId+'"></textarea>' +
+        'rows="10" cols="40" name="message" sender="'+data.userName+'" conversation="'+data.conversation+'"></textarea>' +
         '<div class="btn-footer">' +
         '<button class="bg_none">' +
         '<i class="fa fa-video-camera"></i>' +
@@ -126,7 +126,7 @@ function openChatBox(data, distance) {
 
 function addMessage(data) {
     console.log(data);
-    var conversationContent = document.getElementById('c-content-' + data.sender);
+    var conversationContent = document.getElementById('c-content-' + data.conversation);
     console.log(conversationContent.getAttribute('class'));
     var htmlMessage = '<div class="direct-chat-messages">' +
         '<div class="chat-box-single-line">' +
@@ -134,7 +134,7 @@ function addMessage(data) {
         '</div>' +
         '<div class="direct-chat-msg doted-border">' +
         '<div class="direct-chat-info clearfix">' +
-        '<span class="direct-chat-name pull-left">' + data.name + '</span>' +
+        '<span class="direct-chat-name pull-left">' + data.sender + '</span>' +
         '</div>' +
         '<img class="direct-chat-img" alt="message user image" src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg">' +
         '<div class="direct-chat-text"> ' + data.message + '</div>' +
@@ -159,7 +159,7 @@ function sendMessage(element, event) {
         socket.emit('send', {
             message: message,
             sender: element.getAttribute('sender'),
-            recipient: element.getAttribute('recipient')
+            conversation: element.getAttribute('conversation')
         });
         // Reset value textarea
         element.value = '';

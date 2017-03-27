@@ -118,6 +118,7 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
  * Primary app routes.
  */
 app.get('/', homeController.index);
+app.get('/update-socket/:socketId', homeController.updateSocket);
 app.get('/chat', homeController.chat);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);

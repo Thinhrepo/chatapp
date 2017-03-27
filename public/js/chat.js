@@ -1,12 +1,38 @@
-$(function(){
+$(function () {
     var host = 'http://localhost:8080/';
     var socket = io.connect(host);
+
+    socket.on('client-info', function (data) {
+        console.log(data);
+        // Update socket to client
+        $.ajax( {
+            type: "GET",
+            url: '/update-socket/' + data.socketId,
+            success: function( response ) {
+                console.log(response);
+            }
+        } );
+    })
+
+    socket.on('init', function (data) {
+       if(data){
+           var box = document.getElementById(data.conversationId);
+           if (box === null) {
+               var chatbox = openChatBox(data, 15);
+
+               $('body').append(chatbox);
+           } else {
+               addMessage(data);
+           }
+       }
+    });
+
     socket.on('message', function (data) {
         console.log(data);
         if (data.message) {
             var box = document.getElementById(data.sender);
             if (box === null) {
-                var chatbox = getChatBox(data);
+                var chatbox = openChatBox(data, 15);
 
                 $('body').append(chatbox);
             } else {
@@ -18,13 +44,10 @@ $(function(){
     });
     $(".chat").niceScroll();
     $('.chat-users .user').on('click', function () {
-        var newBox = openChatBox({
-            sender: 'Thinhnv',
-            recipient: 'Me',
-            name: 'Thinhnv',
-            message: 'Hello ' + 'World'
-        }, 15);
-        $('body').append(newBox);
+        socket.emit('init', {
+            userName: $(this).attr('username'),
+            recipient: $(this).attr('recipient'),
+        });
     });
 });
 // Functions
@@ -36,11 +59,11 @@ function openChatBox(data, distance) {
     var r = (numBox > 0) ? (numBox * 300 + (numBox + 1) * distance) : distance;
 
     var html = '<div class="popup-box chat-popup popup-box-on chatbox-identifier" ' +
-        'id="' + data.sender + '" style="right: '+ r +'px">' +
+        'id="' + data.conversationId + '" style="right: ' + r + 'px">' +
         '<div class="popup-head">' +
         '<div class="popup-head-left pull-left">' +
         '<img src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" alt="iamgurdeeposahan"> ' +
-        data.name +
+        data.userName +
         '</div>' +
         '<div class="popup-head-right pull-right">' +
         '<div class="btn-group">' +
@@ -54,19 +77,19 @@ function openChatBox(data, distance) {
         '<li><a href="#">Email Chat</a></li>' +
         '</ul>' +
         '</div>' +
-        '<button class="chat-header-button pull-right" id="closeChatBox" box-close="' + data.sender + '" type="button" onclick="closeChatBox(this)">' +
+        '<button class="chat-header-button pull-right" id="closeChatBox" box-close="' + data.conversationId + '" type="button" onclick="closeChatBox(this)">' +
         '<i class="fa fa-power-off"></i>' +
         '</button>' +
         '</div>' +
         '</div>' +
-        '<div class="popup-messages" id="c-content-' + data.sender + '">' +
+        '<div class="popup-messages" id="c-content-' + data.conversationId + '">' +
         '<div class="direct-chat-messages">' +
         '<div class="chat-box-single-line">' +
         '<abbr class="timestamp">October 8th, 2015</abbr>' +
         '</div>' +
         '<div class="direct-chat-msg doted-border">' +
         '<div class="direct-chat-info clearfix">' +
-        '<span class="direct-chat-name pull-left">' + data.sender + '</span>' +
+        '<span class="direct-chat-name pull-left">' + data.userName + '</span>' +
         '</div>' +
         '<img class="direct-chat-img" alt="message user image" src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg"><div class="direct-chat-text"> ' +
         data.message +
@@ -82,7 +105,7 @@ function openChatBox(data, distance) {
         '</div>' +
         '<div class="popup-messages-footer">' +
         '<textarea onkeypress="sendMessage(this, event)" class="status_message" placeholder="Type a message..." ' +
-        'rows="10" cols="40" name="message" sender="' + data.recipient + '" recipient="' + data.sender + '"></textarea>' +
+        'rows="10" cols="40" name="message" conversation="'+data.conversationId+'"></textarea>' +
         '<div class="btn-footer">' +
         '<button class="bg_none">' +
         '<i class="fa fa-video-camera"></i>' +
@@ -145,7 +168,7 @@ function sendMessage(element, event) {
     }
 }
 
-function closeChatBox(element){
+function closeChatBox(element) {
     var boxClose = document.getElementById(element.getAttribute('box-close'));
 
     boxClose.remove();

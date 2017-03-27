@@ -8,7 +8,7 @@ $(function(){
             if (box === null) {
                 var chatbox = getChatBox(data);
 
-                document.body.innerHTML += chatbox;
+                $('body').append(chatbox);
             } else {
                 addMessage(data);
             }
@@ -23,15 +23,20 @@ $(function(){
             recipient: 'Me',
             name: 'Thinhnv',
             message: 'Hello ' + 'World'
-        });
-        document.body.innerHTML += newBox;
+        }, 15);
+        $('body').append(newBox);
     });
 });
 // Functions
-function openChatBox(data) {
+function openChatBox(data, distance) {
     console.log(data.message);
+
+    var numBox = document.getElementsByClassName('chatbox-identifier').length;
+
+    var r = (numBox > 0) ? (numBox * 300 + (numBox + 1) * distance) : distance;
+
     var html = '<div class="popup-box chat-popup popup-box-on chatbox-identifier" ' +
-        'id="' + data.sender + '">' +
+        'id="' + data.sender + '" style="right: '+ r +'px">' +
         '<div class="popup-head">' +
         '<div class="popup-head-left pull-left">' +
         '<img src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" alt="iamgurdeeposahan"> ' +
@@ -49,7 +54,7 @@ function openChatBox(data) {
         '<li><a href="#">Email Chat</a></li>' +
         '</ul>' +
         '</div>' +
-        '<button class="chat-header-button pull-right" id="closeChatBox" data-widget="remove" type="button" onclick="closeChatBox(this)">' +
+        '<button class="chat-header-button pull-right" id="closeChatBox" box-close="' + data.sender + '" type="button" onclick="closeChatBox(this)">' +
         '<i class="fa fa-power-off"></i>' +
         '</button>' +
         '</div>' +
@@ -141,5 +146,7 @@ function sendMessage(element, event) {
 }
 
 function closeChatBox(element){
-    alert(1);
+    var boxClose = document.getElementById(element.getAttribute('box-close'));
+
+    boxClose.remove();
 }

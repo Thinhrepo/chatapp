@@ -4,7 +4,7 @@ var socket = io.connect(config.server);
 socket.on('connect', function() {console.log('Connected');})
     .on('connect_error', function() {
       console.log('Conn error');
-      process.exit(1);
+      // process.exit(1);
     })
     .on('disconnect', function() {console.log('Disconnected'); });
 
@@ -17,11 +17,9 @@ socket.on('message', function (data) {
  * Home page.
  */
 exports.index = (req, res) => {
+  // socket.emit('join', {name: randomString(6)});
   res.render('home', {
     title: 'Home'
-  }, function (err, result) {
-    res.send(result);
-    socket.emit('join', {name: randomString(8)});
   });
 };
 

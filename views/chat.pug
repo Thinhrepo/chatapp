@@ -1,16 +1,247 @@
 extends layout
 
 block content
-    h1 Hackathon Starter
-    p.lead A boilerplate for Node.js web applications.
-    hr
-    .row
-        // Site content
-        .col-md-9
-            input#username
-            button#join-chat Join
-        // List contact
-        .col-md-3
-            a#addClass(href='#')
-                span.glyphicon.glyphicon-comment
-                |  Open in chat
+    .content.container-fluid.bootstrap.snippets
+        .row.row-broken
+            .col-sm-3.col-xs-12
+                .col-inside-lg.decor-default.chat(style='overflow: hidden; outline: none;', tabindex='5000')
+                    .chat-users
+                        h6 Online
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt='User name')
+                                .status.off
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar2.png', alt='User name')
+                                .status.online
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar3.png', alt='User name')
+                                .status.busy
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar4.png', alt='User name')
+                                .status.offline
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar5.png', alt='User name')
+                                .status.off
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar6.png', alt='User name')
+                                .status.online
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt='User name')
+                                .status.busy
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar2.png', alt='User name')
+                                .status.offline
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar3.png', alt='User name')
+                                .status.off
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar4.png', alt='User name')
+                                .status.online
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar5.png', alt='User name')
+                                .status.busy
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar6.png', alt='User name')
+                                .status.offline
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar7.png', alt='User name')
+                                .status.off
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt='User name')
+                                .status.off
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar2.png', alt='User name')
+                                .status.online
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar3.png', alt='User name')
+                                .status.busy
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar4.png', alt='User name')
+                                .status.offline
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar5.png', alt='User name')
+                                .status.off
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar6.png', alt='User name')
+                                .status.online
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar7.png', alt='User name')
+                                .status.busy
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt='User name')
+                                .status.offline
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar2.png', alt='User name')
+                                .status.off
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar3.png', alt='User name')
+                                .status.online
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar4.png', alt='User name')
+                                .status.busy
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar5.png', alt='User name')
+                                .status.offline
+                            .name User name
+                            .mood User mood
+                        .user
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar6.png', alt='User name')
+                                .status.off
+                            .name User name
+                            .mood User mood
+            .col-sm-9.col-xs-12.chat(style='overflow: hidden; outline: none;', tabindex='5001')
+                .col-inside-lg.decor-default
+                    .chat-body
+                        h6 Mini Chat
+                        .answer.left
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt='User name')
+                                .status.offline
+                            .name Alexander Herthic
+                            .text
+                                | Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+                            .time 5 min ago
+                        .answer.right
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar2.png', alt='User name')
+                                .status.offline
+                            .name Alexander Herthic
+                            .text
+                                | Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+                            .time 5 min ago
+                        .answer.left
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt='User name')
+                                .status.online
+                            .name Alexander Herthic
+                            .text  ...
+                            .time 5 min ago
+                        .answer.right
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar2.png', alt='User name')
+                                .status.busy
+                            .name Alexander Herthic
+                            .text  It is a long established fact that a reader will be. Thanks Mate!
+                            .time 5 min ago
+                        .answer.right
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt='User name')
+                                .status.off
+                            .name Alexander Herthic
+                            .text  It is a long established fact that a reader will be. Thanks Mate!
+                            .time 5 min ago
+                        .answer.left
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar2.png', alt='User name')
+                                .status.offline
+                            .name Alexander Herthic
+                            .text
+                                | Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+                            .time 5 min ago
+                        .answer.right
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt='User name')
+                                .status.offline
+                            .name Alexander Herthic
+                            .text
+                                | Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+                            .time 5 min ago
+                        .answer.left
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar2.png', alt='User name')
+                                .status.online
+                            .name Alexander Herthic
+                            .text  ...
+                            .time 5 min ago
+                        .answer.right
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt='User name')
+                                .status.busy
+                            .name Alexander Herthic
+                            .text  It is a long established fact that a reader will be. Thanks Mate!
+                            .time 5 min ago
+                        .answer.right
+                            .avatar
+                                img(src='http://bootdey.com/img/Content/avatar/avatar2.png', alt='User name')
+                                .status.off
+                            .name Alexander Herthic
+                            .text  It is a long established fact that a reader will be. Thanks Mate!
+                            .time 5 min ago
+                        .answer-add
+                            input(placeholder='Write a message')
+                            span.answer-btn.answer-btn-1
+                            span.answer-btn.answer-btn-2

@@ -10,22 +10,27 @@ html
     link(rel='shortcut icon', href='/favicon.png')
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/main.css')
-    link(rel='stylesheet', href='http://localhost:8080/css/chatbox.css')
+    link(rel='stylesheet', href='/css/chat.css')
+    //link(rel='stylesheet', href='http://localhost:8080/css/chatbox.css')
 
   body
     include partials/header
 
     .container
       include partials/flash
-      block content
+    block content
 
-    include partials/footer
+    //include partials/footer
 
     script(src='/js/lib/jquery-3.1.1.min.js')
     script(src='/js/lib/bootstrap.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js')
+    script(src='/socket.io/socket.io.js')
+    script(src='/js/chat.js')
     script(src='/js/main.js')
-    script(src='http://localhost:8080/socket.io/socket.io.js')
-    script(src='http://localhost:8080/js/chat-client.js')
+    //script(src='/socket.io/socket.io.js')
+    //script(src='/js/chat-client.js')
+
 
     // Google Analytics: change UA-XXXXX-X to be your site's ID
     script.

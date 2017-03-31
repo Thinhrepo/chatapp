@@ -1,4 +1,4 @@
-var host = 'https://server-thinhnv.herokuapp.com/';
+var host = 'http://localhost:8080/';
 var socket = io.connect(host);
 
 $(function () {
@@ -15,8 +15,9 @@ $(function () {
     // })
     //
     socket.on('init', function (data) {
-       if(data){
-           var box = document.getElementById(data.room);
+        console.log(data);
+        if(data){
+           var box = document.getElementById(data.partner.id);
            if (box === null) {
                var chatbox = openChatBox(data, 15);
 
@@ -44,8 +45,7 @@ $(function () {
         }
     });
     socket.emit('identifier', {
-        email: $('#client-identifier').attr('email'),
-        username: $('#client-identifier').attr('username')
+        uId: $('#client-identifier').attr('uId')
     });
     $(".chat").niceScroll();
     $('.chat-users .user').on('click', function () {
@@ -63,11 +63,11 @@ function openChatBox(data, distance) {
     var r = (numBox > 0) ? (numBox * 300 + (numBox + 1) * distance) : distance;
 
     var html = '<div class="popup-box chat-popup popup-box-on chatbox-identifier" ' +
-        'id="' + data.room + '" style="right: ' + r + 'px">' +
+        'id="' + data.partner._id + '" style="right: ' + r + 'px">' +
         '<div class="popup-head">' +
         '<div class="popup-head-left pull-left">' +
         '<img src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" alt="iamgurdeeposahan"> ' +
-        data.partner +
+        (data.partner.profile.name) +
         '</div>' +
         '<div class="popup-head-right pull-right">' +
         '<div class="btn-group">' +
@@ -81,16 +81,16 @@ function openChatBox(data, distance) {
         '<li><a href="#">Email Chat</a></li>' +
         '</ul>' +
         '</div>' +
-        '<button class="chat-header-button pull-right" id="closeChatBox" box-close="' + data.room + '" type="button" onclick="closeChatBox(this)">' +
+        '<button class="chat-header-button pull-right" id="closeChatBox" box-close="' + data.partner._id + '" type="button" onclick="closeChatBox(this)">' +
         '<i class="fa fa-power-off"></i>' +
         '</button>' +
         '</div>' +
         '</div>' +
-        '<div class="popup-messages" id="c-content-' + data.room + '">' +
+        '<div class="popup-messages" id="c-content-' + data.partner._id + '">' +
         '</div>' +
         '<div class="popup-messages-footer">' +
         '<textarea onkeypress="sendMessage(this, event)" class="status_message" placeholder="Type a message..." ' +
-        'rows="10" cols="40" name="message" sender="'+$('#client-identifier').attr('email')+'" room="'+data.room+'"></textarea>' +
+        'rows="10" cols="40" name="message" sender="'+$('#client-identifier').attr('uId')+'" recipient="'+data.partner._id+'"></textarea>' +
         '<div class="btn-footer">' +
         '<button class="bg_none">' +
         '<i class="fa fa-video-camera"></i>' +
@@ -111,7 +111,7 @@ function openChatBox(data, distance) {
 
 function addMessage(data) {
     console.log(data);
-    var conversationContent = document.getElementById('c-content-' + data.room);
+    var conversationContent = document.getElementById('c-content-' + data.partner.id);
 
     var htmlMessage = '<div class="direct-chat-messages">' +
         '<div class="chat-box-single-line">' +
@@ -145,7 +145,7 @@ function sendMessage(element, event) {
         socket.emit('send', {
             message: message,
             sender: element.getAttribute('sender'),
-            room: element.getAttribute('room')
+            recipient: element.getAttribute('recipient')
         });
         // Reset value textarea
         element.value = '';

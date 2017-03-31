@@ -9,7 +9,7 @@ block content
                         h6 Online
                         if user
                             each d in data
-                                .user(owner=user.email, partner=d.email)
+                                .user(owner=user.id, partner=d.id)
                                     .avatar
                                         img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt=d.profile.name)
                                         .status.online

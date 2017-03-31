@@ -9,7 +9,7 @@ block content
                         h6 Online
                         if user
                             each d in data
-                                .user(username=user.profile.name, recipient=d.profile.name)
+                                .user(owner=user.email, partner=d.email)
                                     .avatar
                                         img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt=d.profile.name)
                                         .status.online
@@ -21,85 +21,85 @@ block content
                         //        .status.off
                         //    .name User name
                         //    .mood User mood
-            .col-sm-9.col-xs-12.chat(style='overflow: hidden; outline: none;', tabindex='5001')
-                .col-inside-lg.decor-default
-                    .chat-body
-                        h6 Mini Chat
-                        .answer.left
-                            .avatar
-                                img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt='User name')
-                                .status.offline
-                            .name Alexander Herthic
-                            .text
-                                | Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
-                            .time 5 min ago
-                        .answer.right
-                            .avatar
-                                img(src='http://bootdey.com/img/Content/avatar/avatar2.png', alt='User name')
-                                .status.offline
-                            .name Alexander Herthic
-                            .text
-                                | Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
-                            .time 5 min ago
-                        .answer.left
-                            .avatar
-                                img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt='User name')
-                                .status.online
-                            .name Alexander Herthic
-                            .text  ...
-                            .time 5 min ago
-                        .answer.right
-                            .avatar
-                                img(src='http://bootdey.com/img/Content/avatar/avatar2.png', alt='User name')
-                                .status.busy
-                            .name Alexander Herthic
-                            .text  It is a long established fact that a reader will be. Thanks Mate!
-                            .time 5 min ago
-                        .answer.right
-                            .avatar
-                                img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt='User name')
-                                .status.off
-                            .name Alexander Herthic
-                            .text  It is a long established fact that a reader will be. Thanks Mate!
-                            .time 5 min ago
-                        .answer.left
-                            .avatar
-                                img(src='http://bootdey.com/img/Content/avatar/avatar2.png', alt='User name')
-                                .status.offline
-                            .name Alexander Herthic
-                            .text
-                                | Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
-                            .time 5 min ago
-                        .answer.right
-                            .avatar
-                                img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt='User name')
-                                .status.offline
-                            .name Alexander Herthic
-                            .text
-                                | Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
-                            .time 5 min ago
-                        .answer.left
-                            .avatar
-                                img(src='http://bootdey.com/img/Content/avatar/avatar2.png', alt='User name')
-                                .status.online
-                            .name Alexander Herthic
-                            .text  ...
-                            .time 5 min ago
-                        .answer.right
-                            .avatar
-                                img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt='User name')
-                                .status.busy
-                            .name Alexander Herthic
-                            .text  It is a long established fact that a reader will be. Thanks Mate!
-                            .time 5 min ago
-                        .answer.right
-                            .avatar
-                                img(src='http://bootdey.com/img/Content/avatar/avatar2.png', alt='User name')
-                                .status.off
-                            .name Alexander Herthic
-                            .text  It is a long established fact that a reader will be. Thanks Mate!
-                            .time 5 min ago
-                        .answer-add
-                            input(placeholder='Write a message')
-                            span.answer-btn.answer-btn-1
-                            span.answer-btn.answer-btn-2
+            //.col-sm-9.col-xs-12.chat(style='overflow: hidden; outline: none;', tabindex='5001')
+            //    .col-inside-lg.decor-default
+            //        .chat-body
+            //            h6 Mini Chat
+            //            .answer.left
+            //                .avatar
+            //                    img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt='User name')
+            //                    .status.offline
+            //                .name Alexander Herthic
+            //                .text
+            //                    | Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+            //                .time 5 min ago
+            //            .answer.right
+            //                .avatar
+            //                    img(src='http://bootdey.com/img/Content/avatar/avatar2.png', alt='User name')
+            //                    .status.offline
+            //                .name Alexander Herthic
+            //                .text
+            //                    | Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+            //                .time 5 min ago
+            //            .answer.left
+            //                .avatar
+            //                    img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt='User name')
+            //                    .status.online
+            //                .name Alexander Herthic
+            //                .text  ...
+            //                .time 5 min ago
+            //            .answer.right
+            //                .avatar
+            //                    img(src='http://bootdey.com/img/Content/avatar/avatar2.png', alt='User name')
+            //                    .status.busy
+            //                .name Alexander Herthic
+            //                .text  It is a long established fact that a reader will be. Thanks Mate!
+            //                .time 5 min ago
+            //            .answer.right
+            //                .avatar
+            //                    img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt='User name')
+            //                    .status.off
+            //                .name Alexander Herthic
+            //                .text  It is a long established fact that a reader will be. Thanks Mate!
+            //                .time 5 min ago
+            //            .answer.left
+            //                .avatar
+            //                    img(src='http://bootdey.com/img/Content/avatar/avatar2.png', alt='User name')
+            //                    .status.offline
+            //                .name Alexander Herthic
+            //                .text
+            //                    | Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+            //                .time 5 min ago
+            //            .answer.right
+            //                .avatar
+            //                    img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt='User name')
+            //                    .status.offline
+            //                .name Alexander Herthic
+            //                .text
+            //                    | Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adiping elit
+            //                .time 5 min ago
+            //            .answer.left
+            //                .avatar
+            //                    img(src='http://bootdey.com/img/Content/avatar/avatar2.png', alt='User name')
+            //                    .status.online
+            //                .name Alexander Herthic
+            //                .text  ...
+            //                .time 5 min ago
+            //            .answer.right
+            //                .avatar
+            //                    img(src='http://bootdey.com/img/Content/avatar/avatar1.png', alt='User name')
+            //                    .status.busy
+            //                .name Alexander Herthic
+            //                .text  It is a long established fact that a reader will be. Thanks Mate!
+            //                .time 5 min ago
+            //            .answer.right
+            //                .avatar
+            //                    img(src='http://bootdey.com/img/Content/avatar/avatar2.png', alt='User name')
+            //                    .status.off
+            //                .name Alexander Herthic
+            //                .text  It is a long established fact that a reader will be. Thanks Mate!
+            //                .time 5 min ago
+            //            .answer-add
+            //                input(placeholder='Write a message')
+            //                span.answer-btn.answer-btn-1
+            //                span.answer-btn.answer-btn-2
